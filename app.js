@@ -3,6 +3,12 @@ const path = require('path')
 const hbs = require('hbs')
 const forcast = require('./utilis/forcast.js')
 const geolocation = require('./utilis/geolocation.js')
+const proxy = require("node-global-proxy").default;
+
+proxy.setConfig("10.7.0.1:8080");
+proxy.start();
+
+
 const { dirname } = require('path')
 
 
