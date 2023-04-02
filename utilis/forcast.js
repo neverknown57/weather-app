@@ -1,7 +1,12 @@
 const request = require('request');
 const proxy = require("node-global-proxy").default;
+const chalk = require('chalk');
 
-proxy.setConfig("10.7.0.1:8080");
+proxy.setConfig({
+    http: "http://10.7.0.1:8080",
+    https: "http://10.7.0.1:8080"
+
+});
 proxy.start();
 
 const forcast = (latitude, longitude, callback) => {
@@ -17,19 +22,20 @@ const forcast = (latitude, longitude, callback) => {
         //     callback('unable to fetch, Any valid address')
         else {
             const data = response.body.current;
-            console.log('hellow world');
-            console.log(data)
+            // console.log('hellow from forcast');
+            // console.log(data)
             callback(null, data);
 
             // console.log(data);
             // console.log(error);
         }
+        console.log(chalk.cyanBright.bold("exit from Forcast"))
     })
 }
-const fun1 = (message) => {
-    console.log(message);
-}
-forcast(40.7306, -73.9866, fun1);
+// const fun1 = (message) => {
+//     console.log(message);
+// }
+// forcast(40.7306, -73.9866, fun1);
 
 //module export
 module.exports = forcast;
