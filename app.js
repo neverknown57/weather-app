@@ -6,12 +6,12 @@ const forcast = require('./utilis/forcast.js')
 const geolocation = require('./utilis/geolocation.js')
 const proxy = require("node-global-proxy").default;
 
-proxy.setConfig({
-    http: "http://10.7.0.1:8080",
-    https: "http://10.7.0.1:8080"
+// proxy.setConfig({
+//     http: "http://10.7.0.1:8080",
+//     https: "http://10.7.0.1:8080"
 
-});
-proxy.start();
+// });
+// proxy.start();
 
 const port = process.env.PORT || 3000;
 const { dirname } = require('path')

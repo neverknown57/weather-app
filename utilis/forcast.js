@@ -2,12 +2,12 @@ const request = require('request');
 const proxy = require("node-global-proxy").default;
 const chalk = require('chalk');
 
-proxy.setConfig({
-    http: "http://10.7.0.1:8080",
-    https: "http://10.7.0.1:8080"
+// proxy.setConfig({
+//     http: "http://10.7.0.1:8080",
+//     https: "http://10.7.0.1:8080"
 
-});
-proxy.start();
+// });
+// proxy.start();
 
 const forcast = (latitude, longitude, callback) => {
     var url = 'http://api.weatherstack.com/current?access_key=fb0c6dfbe45daf8c8ed52ba40998efce&query=';

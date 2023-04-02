@@ -6,13 +6,13 @@ const proxy = require("node-global-proxy").default;
 
 // proxy.system()
 
-proxy.setConfig({
-    http: "http://10.7.0.1:8080",
-    https: "http://10.7.0.1:8080"
+// proxy.setConfig({
+//     http: "http://10.7.0.1:8080",
+//     https: "http://10.7.0.1:8080"
 
-});
+// });
 
-proxy.start();
+// proxy.start();
 
 const geolocation = (address, callback) => {
     const url1 = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(address) + '.json?&limit=1&access_token=pk.eyJ1IjoibmV2ZXJrbm93biIsImEiOiJjbGMzbXMxeWoyNWtsM3FvNWFrYm9kNmkzIn0.M1Deq2OV-rSrYq6v1_oS2w'
