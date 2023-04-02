@@ -1,4 +1,5 @@
 const request = require('request');
+const chalk = require('chalk');
 const proxy = require("node-global-proxy").default;
 
 // proxy.setConfig("10.7.0.1:8080");
@@ -18,8 +19,9 @@ const geolocation = (address, callback) => {
     request({ url: url1, json: true }, (error, response) => {
         console.log(url1);
         console.log('\n')
-        console.log(error)
-        console.log(address)
+        // if (error)
+        //     console.log(chalk.red(error))
+        // console.log(address, 'geoloc Page')
         if (error)
             callback('Unable to connect api!', null)
         else if (response.body.features.length == 0)
@@ -36,16 +38,17 @@ const geolocation = (address, callback) => {
             }
             // console.log(place_name);
             // console.log(latitude, longnitude);
-            callback(data, null);
+            callback(null, data);
         }
+        console.log(chalk.green('Exit from GeoLocation'))
     })
 }
-console.log("kaise ho bhai");
-const fun1 = (message) => {
-    console.log(message);
-}
-geolocation('New York', fun1);
-console.log("code");
+// console.log("kaise ho bhai");
+// const fun1 = (message) => {
+//     console.log(message);
+// }
+// geolocation('New York', fun1);
+// console.log("code");
 // geolocation('Dausa',fun1);
 // geolocation('Jaipur',fun1);
 

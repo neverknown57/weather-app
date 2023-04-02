@@ -1,15 +1,21 @@
 const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
+const chalk = require('chalk')
 const forcast = require('./utilis/forcast.js')
 const geolocation = require('./utilis/geolocation.js')
 const proxy = require("node-global-proxy").default;
 
-proxy.setConfig("10.7.0.1:8080");
+proxy.setConfig({
+    http: "http://10.7.0.1:8080",
+    https: "http://10.7.0.1:8080"
+
+});
 proxy.start();
 
-
+const port = process.env.PORT || 3000;
 const { dirname } = require('path')
+const { stringify } = require('querystring')
 
 
 const app = express();
@@ -38,15 +44,20 @@ app.get('/weather', (req, res) => {
             if (error) return res.send(error)
             else {
                 forcast(data.latitude, data.longitude, (error, resp) => {
+                    console.log('calling forcast')
                     if (error) {
                         console.log('didn\'t get data')
                         return res.send('erro');
                     }
                     else {
+                        // console.log('got data')
                         const place1 = data.place
+                        // const weather = stringify(resp)
+                        // console.log(chalk.bgBlue(weather))
                         // res.send({place:place1 , weather:'good'})
                         const d = { place: place1, weather: resp }
-                        // console.log(d)
+                        // console.log(chalk.bgRed(d))
+                        // console.log(d.weather)
                         res.send(d)
                     }
                 })
@@ -59,6 +70,6 @@ app.get('*', (req, res) => {
     res.render('404not-found')
 })
 
-app.listen(3000, () => {
-    console.log('listening on port 3000')
+app.listen(port, () => {
+    console.log(chalk.red('listening on port'), port)
 });
